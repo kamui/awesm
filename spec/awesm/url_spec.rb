@@ -17,7 +17,7 @@ describe Awesm::Url do
   }
 
   describe '.create' do
-    let(:api_url) { "http://api.awe.sm/url.json" }
+    let(:api_url) { "https://api.awe.sm/url.json" }
 
     let(:required_params) {
       {
@@ -119,7 +119,7 @@ describe Awesm::Url do
     it 'posts to the awe.sm project creation api properly' do
       expected_query = required_params.merge(:v => "3")
       Awesm::Url.create(required_params)
-      a_request(:post, "http://api.awe.sm/url.json").
+      a_request(:post, "https://api.awe.sm/url.json").
         with(:body => expected_query).
         should have_been_made.once
     end
@@ -142,7 +142,7 @@ describe Awesm::Url do
                        :tool => 'mKU7uN',
                        :channel => 'twitter',
                        :destination => 'http://twitter.com/intent/tweet?text=This+is+the+coolest+API+evar!%26url=AWESM_URL%26via=awesm').
-                       should == 'http://api.awe.sm/url/share?v=3&url=http://developers.awe.sm/&key=5c8b1a212434c2153c2f2c2f2c765a36140add243bf6eae876345f8fd11045d9&tool=mKU7uN&channel=twitter&destination=http://twitter.com/intent/tweet?text=This+is+the+coolest+API+evar!%26url=AWESM_URL%26via=awesm'
+                       should == 'https://api.awe.sm/url/share?v=3&url=http://developers.awe.sm/&key=5c8b1a212434c2153c2f2c2f2c765a36140add243bf6eae876345f8fd11045d9&tool=mKU7uN&channel=twitter&destination=http://twitter.com/intent/tweet?text=This+is+the+coolest+API+evar!%26url=AWESM_URL%26via=awesm'
     end
 
     it 'returns nil if it receives an empty hash' do
@@ -169,14 +169,14 @@ describe Awesm::Url do
     ].each do |option, value|
        it "returns the correct awe.sm url when also passed a '#{option.to_s}' parameter" do
          Awesm::Url.share(required_parameters.merge(option => value)).
-           should == "http://api.awe.sm/url/share?v=3&url=http://developers.awe.sm/&key=5c8b1a212434c2153c2f2c2f2c765a36140add243bf6eae876345f8fd11045d9&tool=mKU7uN&channel=twitter&destination=http://twitter.com/intent/tweet?text=This+is+the+coolest+API+evar!%26url=AWESM_URL%26via=awesm&#{option.to_s}=#{value}"
+           should == "https://api.awe.sm/url/share?v=3&url=http://developers.awe.sm/&key=5c8b1a212434c2153c2f2c2f2c765a36140add243bf6eae876345f8fd11045d9&tool=mKU7uN&channel=twitter&destination=http://twitter.com/intent/tweet?text=This+is+the+coolest+API+evar!%26url=AWESM_URL%26via=awesm&#{option.to_s}=#{value}"
        end
      end
 
   end
 
   describe '.static' do
-    let(:api_url) { "http://api.awe.sm/url/static.json" }
+    let(:api_url) { "https://api.awe.sm/url/static.json" }
 
     let(:valid_params) {
       {
@@ -284,7 +284,7 @@ describe Awesm::Url do
     it 'posts to the awe.sm project creation api properly' do
       expected_query = valid_params.merge(:v => "3")
       Awesm::Url.static(valid_params)
-      a_request(:post, "http://api.awe.sm/url/static.json").
+      a_request(:post, "https://api.awe.sm/url/static.json").
         with(:body => expected_query).
         should have_been_made.once
     end

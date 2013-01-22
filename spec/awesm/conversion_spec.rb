@@ -52,9 +52,9 @@ describe Awesm::Conversion do
   end
 
   before do
-    stub_request(:get, "http://api.awe.sm/conversions/new?key=f2d8aeb112f1e0bedd7c05653e3265d2622635a3180f336f73b172267f7fe6ee&awesm_url=awe.sm_5WXHo&conversion_type=goal_1&conversion_value=1230").
+    stub_request(:get, "https://api.awe.sm/conversions/new?key=f2d8aeb112f1e0bedd7c05653e3265d2622635a3180f336f73b172267f7fe6ee&awesm_url=awe.sm_5WXHo&conversion_type=goal_1&conversion_value=1230").
        to_return(:status => 200, :body => json_response, :headers => { 'Content-Type' => 'application/json;charset=utf-8' })
-    stub_request(:get, "http://api.awe.sm/conversions/new?key=badkeyabcdefghijklmnopqrstuvwxyz1234567890&awesm_url=awe.sm_5WXHo&conversion_type=goal_1&conversion_value=1230").
+    stub_request(:get, "https://api.awe.sm/conversions/new?key=badkeyabcdefghijklmnopqrstuvwxyz1234567890&awesm_url=awe.sm_5WXHo&conversion_type=goal_1&conversion_value=1230").
        to_return(:status => 400, :body => json_error_response, :headers => { 'Content-Type' => 'application/json;charset=utf-8' })
   end
 
@@ -96,7 +96,7 @@ describe Awesm::Conversion do
 
       conversion = Awesm::Conversion.convert(params)
 
-      a_request(:get, "http://api.awe.sm/conversions/new").
+      a_request(:get, "https://api.awe.sm/conversions/new").
         with(:query => {:key => "f2d8aeb112f1e0bedd7c05653e3265d2622635a3180f336f73b172267f7fe6ee",
              :awesm_url => "awe.sm_5WXHo", :conversion_type => "goal_1", :conversion_value => "1230"}).
         should have_been_made.once

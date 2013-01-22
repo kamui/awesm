@@ -38,9 +38,9 @@ describe Awesm::Stats do
     end
 
     before do
-      stub_request(:get, "http://api.awe.sm/stats/range.json?v=3&end_date=2011-10-01&key=5c8b1a212434c2153c2f2c2f2c765a36140add243bf6eae876345f8fd11045d9&start_date=2011-09-01").
+      stub_request(:get, "https://api.awe.sm/stats/range.json?v=3&end_date=2011-10-01&key=5c8b1a212434c2153c2f2c2f2c765a36140add243bf6eae876345f8fd11045d9&start_date=2011-09-01").
         to_return(:status => 200, :body => basic_response, :headers => { 'Content-Type' => 'application/json;charset=utf-8' })
-      stub_request(:get, "http://api.awe.sm/stats/range.json?v=3&end_date=2011-10-01&key=fake_key&start_date=2011-09-01").
+      stub_request(:get, "https://api.awe.sm/stats/range.json?v=3&end_date=2011-10-01&key=fake_key&start_date=2011-09-01").
         to_return(
           :status => 403,
           :body => invalid_key_response,
@@ -62,7 +62,7 @@ describe Awesm::Stats do
         :end_date   => '2011-10-01'
       )
 
-      a_request(:get, "http://api.awe.sm/stats/range.json").
+      a_request(:get, "https://api.awe.sm/stats/range.json").
         with(:query => {
           :v          => '3',
           :key        => '5c8b1a212434c2153c2f2c2f2c765a36140add243bf6eae876345f8fd11045d9',
@@ -115,10 +115,10 @@ describe Awesm::Stats do
     end
 
     before do
-      stub_request(:get, "http://api.awe.sm/stats/demo.awe.sm_K7e.json").
+      stub_request(:get, "https://api.awe.sm/stats/demo.awe.sm_K7e.json").
         with(:query => { :v => '3', :key => '5c8b1a212434c2153c2f2c2f2c765a36140add243bf6eae876345f8fd11045d9' }).
         to_return(:status => 200, :body => stats_response, :headers => {})
-      stub_request(:get, "http://api.awe.sm/stats/demo.awe.sm_K7e.json").
+      stub_request(:get, "https://api.awe.sm/stats/demo.awe.sm_K7e.json").
         with(:query => { :v => '3', :key => 'wrong' }).
         to_return(:status => 200, :body => invalid_key_response, :headers => {})
     end
@@ -126,7 +126,7 @@ describe Awesm::Stats do
     it 'should make the correct api call' do
       Awesm::Stats.url(:key => '5c8b1a212434c2153c2f2c2f2c765a36140add243bf6eae876345f8fd11045d9', :awesm_id => 'demo.awe.sm_K7e')
 
-      a_request(:get, 'http://api.awe.sm/stats/demo.awe.sm_K7e.json').
+      a_request(:get, 'https://api.awe.sm/stats/demo.awe.sm_K7e.json').
         with(:query => { :v => '3', :key => '5c8b1a212434c2153c2f2c2f2c765a36140add243bf6eae876345f8fd11045d9' }).
         should have_been_made.once
     end

@@ -10,7 +10,7 @@ require 'awesm/url'
 require 'awesm/stats'
 
 module Awesm
-  HOST = 'http://api.awe.sm'
+  HOST = 'https://api.awe.sm'
 
   extend HTTPClient::IncludeClient
 
